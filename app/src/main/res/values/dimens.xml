@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <dimen name="padding_headerTop">30dp</dimen>
+    <dimen name="padding_headerBottom">50dp</dimen>
+    <dimen name="spacer_header">40dp</dimen>
+
+    <dimen name="size_logoImageHeight">30dp</dimen>
+    <dimen name="size_logoImageWidth">130dp</dimen>
+
 </resources>

@@ -27,4 +27,7 @@
     <dimen name="padding_slideCardsBottom">20dp</dimen>
     <dimen name="padding_slideCardsSpaced">15dp</dimen>
 
+    <dimen name="size_iconButton">50dp</dimen>
+    <dimen name="padding_iconButton">15dp</dimen>
+
 </resources>

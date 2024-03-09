@@ -8,4 +8,23 @@
     <dimen name="size_logoImageHeight">30dp</dimen>
     <dimen name="size_logoImageWidth">130dp</dimen>
 
+    <dimen name="padding_titleStart">30dp</dimen>
+    <dimen name="padding_titleBottom">60dp</dimen>
+
+    <dimen name="padding_titleWithDescStart">15dp</dimen>
+    <dimen name="padding_titleWithDescBottom">30dp</dimen>
+    <dimen name="spacer_titleAndDescription">30dp</dimen>
+
+    <dimen name="size_descriptionHeight">60dp</dimen>
+    <dimen name="size_descriptionWidth">350dp</dimen>
+
+    <dimen name="size_slideCardHeight">620dp</dimen>
+    <dimen name="size_slideCardWidth">355dp</dimen>
+    <dimen name="corner_slideCard">10dp</dimen>
+
+    <dimen name="padding_slideCardsStart">30dp</dimen>
+    <dimen name="padding_slideCardsEnd">30dp</dimen>
+    <dimen name="padding_slideCardsBottom">20dp</dimen>
+    <dimen name="padding_slideCardsSpaced">15dp</dimen>
+
 </resources>

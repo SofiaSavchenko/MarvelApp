@@ -4,7 +4,7 @@ import com.example.marvelapp.data.HeroData
 
 open class HeroCard(
 
-    open val imageResId: Int,
+    open val imageLink: String,
     open val nameResId: Int,
 
     )
@@ -12,19 +12,19 @@ open class HeroCard(
 data class HeroCardWithDesc(
 
     val descriptionResId: Int,
-    override val imageResId: Int,
+    override val imageLink: String,
     override val nameResId: Int,
 
-    ): HeroCard(imageResId, nameResId)
+    ): HeroCard(imageLink, nameResId)
 
 
 data class HeroCardWithBack(
 
     val backgroundResId: Int,
-    override val imageResId: Int,
+    override val imageLink: String,
     override val nameResId: Int,
 
-    ) : HeroCard(imageResId, nameResId)
+    ) : HeroCard(imageLink, nameResId)
 
 
 private val numberOfHeroCards = HeroData.name.size
@@ -40,7 +40,7 @@ object HeroCardsWithDesc: GetHeroCardsInterface {
             HeroCardWithDesc(
 
                 descriptionResId = HeroData.description[i],
-                imageResId = HeroData.image[i],
+                imageLink = HeroData.image[i],
                 nameResId = HeroData.name[i]
 
             )
@@ -60,7 +60,7 @@ object HeroCardsWithBack: GetHeroCardsInterface {
         (0 until numberOfHeroCards).map { i ->
             HeroCardWithBack(
                 backgroundResId = HeroData.background[i],
-                imageResId = HeroData.image[i],
+                imageLink = HeroData.image[i],
                 nameResId = HeroData.name[i],
             )
         }

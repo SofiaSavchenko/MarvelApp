@@ -46,7 +46,7 @@ fun HeroHeaderBlock() {
 fun LoadLogoImage() {
 
     AsyncImage(
-        model = "https://effectiveband.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fab5510e9-0d2f-404e-9f55-374c7a36d382%2F014c0cb6-64d9-45bd-a3e1-a3cf608257e3%2FUntitled.png?table=block&id=47c3f47d-d604-431d-aa05-6728c63df83d&spaceId=ab5510e9-0d2f-404e-9f55-374c7a36d382&width=2000&userId=&cache=v2",
+        model = "https://iili.io/JMnuvbp.png",
         contentDescription = null,
         contentScale = ContentScale.FillWidth,
         modifier = Modifier

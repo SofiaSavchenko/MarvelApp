@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -23,6 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.example.marvelapp.HeroCard
 import com.example.marvelapp.HeroCardWithDesc
 import com.example.marvelapp.R
@@ -39,8 +41,8 @@ fun CardHeroUi(
         modifier = modifier
     ) {
 
-        Image(
-            painter = painterResource(card.imageResId),
+        AsyncImage(
+            model = card.imageLink,
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
@@ -114,7 +116,7 @@ fun PreviewCardHeroUiStartScreen() {
                     .size(355.dp, 620.dp),
 
                 card = HeroCard(
-                    imageResId = HeroData.image[0],
+                    imageLink = HeroData.image[0],
                     nameResId = HeroData.name[0]
                 )
             )
@@ -135,7 +137,7 @@ fun PreviewCardHeroUiFullScreen() {
                     .size(355.dp, 620.dp),
 
                 card = HeroCardWithDesc(
-                    imageResId = HeroData.image[0],
+                    imageLink = HeroData.image[0],
                     nameResId = HeroData.name[0],
                     descriptionResId = HeroData.description[0]
                 )

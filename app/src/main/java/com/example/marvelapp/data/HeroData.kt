@@ -5,9 +5,10 @@ import com.example.marvelapp.R
 object HeroData {
 
     val image = listOf(
-        R.drawable.img_deadpool,
-        R.drawable.img_iron_man,
-        R.drawable.img_spider_man
+
+        "https://iili.io/JMnAfIV.png",
+        "https://iili.io/JMnuDI2.png",
+        "https://iili.io/JMnuyB9.png"
     )
 
     val name = listOf(

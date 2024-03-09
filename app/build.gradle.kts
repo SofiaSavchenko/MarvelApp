@@ -71,5 +71,6 @@ dependencies {
 
     implementation(libs.coil)
     implementation(libs.navigation)
+    implementation(libs.accomponistSystemUiController)
 
 }

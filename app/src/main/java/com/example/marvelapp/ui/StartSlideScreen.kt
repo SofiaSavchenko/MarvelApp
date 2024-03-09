@@ -26,6 +26,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavHostController
 import com.example.marvelapp.HeroCardWithBack
 import com.example.marvelapp.R
+import com.example.marvelapp.Screens
 
 @Composable
 fun StartSlideScreen(
@@ -73,6 +74,7 @@ fun StartSlideScreen(
                             )
                             .clickable {
 
+                                navController.navigate("${Screens.fullScreen}/${index}")
                             },
                         card
                     )

@@ -12,4 +12,7 @@
     <string name="description_iron_man">I AM IRON MAN</string>
     <string name="description_spider_man">In iron suit</string>
 
+    <string name="startScreen">startScreen</string>
+    <string name="fullScreen">fullScreen</string>
+
 </resources>

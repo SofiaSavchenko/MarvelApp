@@ -3,11 +3,8 @@ package com.example.marvelapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
@@ -25,11 +22,8 @@ class MainActivity : ComponentActivity() {
 
                 ApplySystemBarColors()
 
-                Surface(
-                    modifier = Modifier.fillMaxSize()
-                ) {
-                    MarvelApp()
-                }
+                AppNavigation()
+
             }
         }
     }
@@ -53,10 +47,7 @@ fun Preview() {
 
         ApplySystemBarColors()
 
-        Surface(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            MarvelApp()
-        }
+        AppNavigation()
+
     }
 }

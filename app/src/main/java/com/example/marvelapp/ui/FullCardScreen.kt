@@ -48,5 +48,5 @@ fun FullCardScreen(
 private fun navigateToStart(
     navController: NavHostController
 ) {
-    navController.popBackStack(Screens.startScreen, inclusive = false)
+    navController.popBackStack(Screens.Start.route, inclusive = false)
 }

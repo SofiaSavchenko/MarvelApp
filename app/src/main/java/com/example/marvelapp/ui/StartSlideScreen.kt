@@ -74,7 +74,7 @@ fun StartSlideScreen(
                             )
                             .clickable {
 
-                                navController.navigate("${Screens.fullScreen}/${index}")
+                                navController.navigate("${Screens.FullCard.route}/${index}")
                             },
                         card
                     )

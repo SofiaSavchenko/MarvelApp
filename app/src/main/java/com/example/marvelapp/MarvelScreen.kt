@@ -10,10 +10,9 @@ import androidx.navigation.compose.rememberNavController
 import com.example.marvelapp.ui.FullCardScreen
 import com.example.marvelapp.ui.StartSlideScreen
 
-object Screens {
-
-    val startScreen = R.string.startScreen.toString()
-    val fullScreen = R.string.fullScreen.toString()
+sealed class Screens(val route: String) {
+    data object Start: Screens("start_screen")
+    data object FullCard: Screens("fullCard_screen")
 }
 
 @Composable
@@ -23,9 +22,9 @@ fun MarvelApp(
 
     NavHost(
         navController = navController,
-        startDestination = Screens.startScreen,
+        startDestination = Screens.Start.route,
     ) {
-        composable(route = Screens.startScreen) {
+        composable(route = Screens.Start.route) {
             StartSlideScreen(
                 modifier = Modifier.fillMaxSize(),
                 cards = HeroCardsWithBack.getHeroCards(),
@@ -34,7 +33,7 @@ fun MarvelApp(
         }
 
         composable(
-            route = "${Screens.fullScreen}/{cardId}"
+            route = "${Screens.FullCard.route}/{cardId}"
         ) { backStackEntry ->
             val cardId = backStackEntry.arguments?.getString("cardId")?.toIntOrNull()
             val card = cardId?.let { HeroCardsWithDesc.getHeroCards()[it] }

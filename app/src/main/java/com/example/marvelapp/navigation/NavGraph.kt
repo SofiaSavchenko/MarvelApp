@@ -6,8 +6,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.marvelapp.HeroCardsWithBack
-import com.example.marvelapp.HeroCardsWithDesc
+import com.example.marvelapp.objects.HeroCardsWithBack
+import com.example.marvelapp.objects.HeroCardsWithDesc
 import com.example.marvelapp.ui.FullCardScreen
 import com.example.marvelapp.ui.StartSlideScreen
 

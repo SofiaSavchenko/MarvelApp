@@ -1,4 +1,4 @@
-package com.example.marvelapp
+package com.example.marvelapp.objects
 
 import com.example.marvelapp.data.HeroData
 

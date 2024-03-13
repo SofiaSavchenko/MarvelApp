@@ -1,4 +1,4 @@
-package com.example.marvelapp
+package com.example.marvelapp.ui.components
 
 import androidx.compose.runtime.Composable
 import com.example.marvelapp.navigation.NavGraph

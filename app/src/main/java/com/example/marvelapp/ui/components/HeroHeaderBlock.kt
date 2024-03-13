@@ -1,4 +1,4 @@
-package com.example.marvelapp.ui
+package com.example.marvelapp.ui.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

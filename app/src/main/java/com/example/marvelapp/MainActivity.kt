@@ -8,6 +8,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
+import com.example.marvelapp.ui.components.AppNavigation
 import com.example.marvelapp.ui.theme.MarvelAppTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 

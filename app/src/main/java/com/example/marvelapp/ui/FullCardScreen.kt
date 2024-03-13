@@ -13,8 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.navigation.NavHostController
-import com.example.marvelapp.HeroCard
+import com.example.marvelapp.objects.HeroCard
 import com.example.marvelapp.R
+import com.example.marvelapp.ui.components.CardHeroUi
 import com.example.marvelapp.navigation.Screens
 
 @Composable

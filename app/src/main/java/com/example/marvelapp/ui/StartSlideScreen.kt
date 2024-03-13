@@ -24,8 +24,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavHostController
-import com.example.marvelapp.HeroCardWithBack
+import com.example.marvelapp.objects.HeroCardWithBack
 import com.example.marvelapp.R
+import com.example.marvelapp.ui.components.CardHeroUi
+import com.example.marvelapp.ui.components.HeroHeaderBlock
 import com.example.marvelapp.navigation.Screens
 
 @Composable

@@ -40,5 +40,5 @@ fun DrawCardBackground(color: Color) {
 @Preview
 @Composable
 fun PreviewDrawCardBackground() {
-    DrawCardBackground(HeroData.backgroundColor[0])
+    DrawCardBackground(HeroData.color[0])
 }

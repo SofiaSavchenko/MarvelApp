@@ -31,11 +31,11 @@ fun NavGraph(
         composable(
             route = "${Screens.FullCard.route}/{cardId}"
         ) { backStackEntry ->
-            val cardId = backStackEntry.arguments?.getString("cardId")?.toIntOrNull()
-            val card = cardId?.let { HeroCardsWithDesc.getHeroCards()[it] }
+            val cardId = backStackEntry.arguments?.getString("cardId")?.toInt()!!
+            val card = HeroCardsWithDesc.getHeroCards()[cardId]
             FullCardScreen(
                 modifier = Modifier.fillMaxSize(),
-                card = card!!,
+                card = card,
                 navController = navController
             )
         }

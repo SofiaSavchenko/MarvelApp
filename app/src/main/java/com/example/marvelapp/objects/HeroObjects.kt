@@ -16,7 +16,7 @@ data class HeroCardWithDesc(
     override val imageLink: String,
     override val nameResId: Int,
 
-    ): HeroCard(imageLink, nameResId)
+    ) : HeroCard(imageLink, nameResId)
 
 
 data class HeroCardWithBack(
@@ -30,11 +30,7 @@ data class HeroCardWithBack(
 
 private val numberOfHeroCards = HeroData.name.size
 
-interface GetHeroCardsInterface {
-    fun getHeroCards(): List<HeroCard>
-}
-
-object HeroCardsWithDesc: GetHeroCardsInterface {
+object HeroCardsWithDesc {
 
     private val heroCardsList: List<HeroCardWithDesc> by lazy {
         (0 until numberOfHeroCards).map { i ->
@@ -48,12 +44,12 @@ object HeroCardsWithDesc: GetHeroCardsInterface {
         }
     }
 
-    override fun getHeroCards(): List<HeroCardWithDesc> {
+    fun getHeroCards(): List<HeroCardWithDesc> {
         return heroCardsList
     }
 }
 
-object HeroCardsWithBack: GetHeroCardsInterface {
+object HeroCardsWithBack {
 
     private val numberOfHeroCards = HeroData.name.size
 
@@ -67,7 +63,7 @@ object HeroCardsWithBack: GetHeroCardsInterface {
         }
     }
 
-    override fun getHeroCards(): List<HeroCardWithBack> {
+    fun getHeroCards(): List<HeroCardWithBack> {
         return heroCardsList
     }
 }

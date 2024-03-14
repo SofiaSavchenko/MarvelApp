@@ -28,6 +28,7 @@ import com.example.marvelapp.R
 import com.example.marvelapp.data.HeroData
 import com.example.marvelapp.ui.theme.MarvelAppTheme
 
+
 @Composable
 fun CardHeroUi(
     modifier: Modifier = Modifier,
@@ -46,49 +47,55 @@ fun CardHeroUi(
                 .fillMaxSize()
         )
 
-        if (card !is HeroCardWithDesc) {
+        when (card) {
 
-            Text(
-                text = stringResource(card.nameResId),
-                modifier = Modifier
-                    .padding(
-                        start = dimensionResource(R.dimen.padding_titleStart),
-                        bottom = dimensionResource(R.dimen.padding_titleBottom)
+            is HeroCardWithDesc -> {
+
+                Column(
+                    modifier = Modifier
+                        .padding(
+                            start = dimensionResource(R.dimen.padding_titleWithDescStart),
+                            bottom = dimensionResource(R.dimen.padding_titleWithDescBottom)
+                        )
+                        .align(Alignment.BottomStart)
+                ) {
+
+                    Text(
+                        text = stringResource(card.nameResId),
+                        color = Color.White,
+                        style = MarvelAppTheme.TextStyle.ExtraBold_34
                     )
-                    .align(Alignment.BottomStart),
-                color = Color.White,
-                style = MarvelAppTheme.TextStyle.ExtraBold_32
-            )
 
-        } else {
+                    Spacer(Modifier.height(dimensionResource(R.dimen.spacer_titleAndDescription)))
 
-            Column(
-                modifier = Modifier
-                    .padding(
-                        start = dimensionResource(R.dimen.padding_titleWithDescStart),
-                        bottom = dimensionResource(R.dimen.padding_titleWithDescBottom)
+                    Text(
+                        text = stringResource(card.descriptionResId),
+                        modifier = Modifier
+                            .size(
+                                height = dimensionResource(R.dimen.size_descriptionHeight),
+                                width = dimensionResource(R.dimen.size_descriptionWidth)
+                            )
+                            .alpha(0.9f),
+                        color = Color.White,
+                        style = MarvelAppTheme.TextStyle.Bold_22
                     )
-                    .align(Alignment.BottomStart)
-            ) {
+
+                }
+
+            }
+
+            else -> {
 
                 Text(
                     text = stringResource(card.nameResId),
-                    color = Color.White,
-                    style = MarvelAppTheme.TextStyle.ExtraBold_34
-                )
-
-                Spacer(Modifier.height(dimensionResource(R.dimen.spacer_titleAndDescription)))
-
-                Text(
-                    text = stringResource(card.descriptionResId),
                     modifier = Modifier
-                        .size(
-                            height = dimensionResource(R.dimen.size_descriptionHeight),
-                            width = dimensionResource(R.dimen.size_descriptionWidth)
+                        .padding(
+                            start = dimensionResource(R.dimen.padding_titleStart),
+                            bottom = dimensionResource(R.dimen.padding_titleBottom)
                         )
-                        .alpha(0.9f),
+                        .align(Alignment.BottomStart),
                     color = Color.White,
-                    style = MarvelAppTheme.TextStyle.Bold_22
+                    style = MarvelAppTheme.TextStyle.ExtraBold_32
                 )
 
             }
@@ -97,7 +104,6 @@ fun CardHeroUi(
     }
 
 }
-
 
 @Preview
 @Composable

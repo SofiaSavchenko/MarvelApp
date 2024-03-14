@@ -1,5 +1,6 @@
 package com.example.marvelapp.data
 
+import androidx.compose.ui.graphics.Color
 import com.example.marvelapp.R
 
 object HeroData {
@@ -23,10 +24,10 @@ object HeroData {
         R.string.description_spider_man
     )
 
-    val background = listOf(
-        R.drawable.background_deadpool,
-        R.drawable.background_iron_man,
-        R.drawable.background_spider_man
+    val color = listOf(
+        Color(0xFF991518),
+        Color(0xFFCB9E48),
+        Color(0xFF2F3A9A),
     )
 
 }

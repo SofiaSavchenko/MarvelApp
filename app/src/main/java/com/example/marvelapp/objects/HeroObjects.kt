@@ -1,5 +1,6 @@
 package com.example.marvelapp.objects
 
+import androidx.compose.ui.graphics.Color
 import com.example.marvelapp.data.HeroData
 
 open class HeroCard(
@@ -20,7 +21,7 @@ data class HeroCardWithDesc(
 
 data class HeroCardWithBack(
 
-    val backgroundResId: Int,
+    val backgroundColor: Color,
     override val imageLink: String,
     override val nameResId: Int,
 
@@ -59,7 +60,7 @@ object HeroCardsWithBack: GetHeroCardsInterface {
     private val heroCardsList: List<HeroCardWithBack> by lazy {
         (0 until numberOfHeroCards).map { i ->
             HeroCardWithBack(
-                backgroundResId = HeroData.background[i],
+                backgroundColor = HeroData.color[i],
                 imageLink = HeroData.image[i],
                 nameResId = HeroData.name[i],
             )

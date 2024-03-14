@@ -43,7 +43,7 @@ fun HeroHeaderBlock() {
 }
 
 @Composable
-fun LoadLogoImage() {
+private fun LoadLogoImage() {
 
     AsyncImage(
         model = "https://iili.io/JMnuvbp.png",

@@ -3,7 +3,6 @@
 package com.example.marvelapp.ui
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
 import androidx.compose.foundation.layout.Arrangement
@@ -20,15 +19,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavHostController
 import com.example.marvelapp.objects.HeroCardWithBack
 import com.example.marvelapp.R
 import com.example.marvelapp.ui.components.CardHeroUi
 import com.example.marvelapp.ui.components.HeroHeaderBlock
 import com.example.marvelapp.navigation.Screens
+import com.example.marvelapp.ui.components.DrawCardBackground
 
 @Composable
 fun StartSlideScreen(
@@ -40,11 +38,8 @@ fun StartSlideScreen(
 
     Box(modifier = modifier) {
 
-        Image(
-            painter = painterResource(cards[state.firstVisibleItemIndex].backgroundResId),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxSize()
+        DrawCardBackground(
+            color = cards[state.firstVisibleItemIndex].backgroundColor
         )
 
         Column(

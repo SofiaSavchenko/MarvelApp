@@ -1,7 +1,6 @@
-package com.example.marvelapp.ui.components
+package com.example.marvelapp.navigation
 
 import androidx.compose.runtime.Composable
-import com.example.marvelapp.navigation.NavGraph
 import androidx.navigation.compose.rememberNavController
 
 @Composable

@@ -24,7 +24,7 @@ import androidx.core.view.WindowCompat
 object MarvelAppTheme {
 
     val backgroundScreen = Color(0xFF2B272B)
-
+    val loadingScreen = Color(0xFF991518)
     object TextStyle {
 
         val Bold_22
@@ -76,6 +76,20 @@ object MarvelAppTheme {
                     fontFamily = FontFamily,
                     fontWeight = FontWeight.ExtraBold,
                     fontSize = 34.sp,
+                    platformStyle = PlatformTextStyle(includeFontPadding = false),
+                    lineHeightStyle = LineHeightStyle(
+                        LineHeightStyle.Alignment.Proportional,
+                        LineHeightStyle.Trim.None
+                    ),
+                )
+
+        val ExtraBold_45
+            @Composable
+            get() =
+                TextStyle(
+                    fontFamily = FontFamily,
+                    fontWeight = FontWeight.ExtraBold,
+                    fontSize = 45.sp,
                     platformStyle = PlatformTextStyle(includeFontPadding = false),
                     lineHeightStyle = LineHeightStyle(
                         LineHeightStyle.Alignment.Proportional,

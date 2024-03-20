@@ -18,16 +18,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.navigation.NavHostController
-import com.example.marvelapp.objects.HeroCard
 import com.example.marvelapp.R
 import com.example.marvelapp.ui.components.CardHeroUi
 import com.example.marvelapp.navigation.Screens
+import com.example.marvelapp.network.view.MarvelViewModel
+import com.example.marvelapp.data.HeroCardWithDesc
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun FullCardScreen(
+    marvelViewModel: MarvelViewModel,
     modifier: Modifier,
-    card: HeroCard,
     navController: NavHostController
 ) {
     Scaffold(
@@ -56,9 +57,18 @@ fun FullCardScreen(
             )
         }
     ) {
-        CardHeroUi(modifier = modifier, card = card)
+        val card = marvelViewModel.character.value
+        if (card != null) {
+            CardHeroUi(
+                modifier = modifier,
+                card = HeroCardWithDesc(
+                    card.description,
+                    imageLink = "${card.image.path}.${card.image.extension}",
+                    card.name
+                )
+            )
+        }
     }
-
 }
 
 private fun navigateToStart(

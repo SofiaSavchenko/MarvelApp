@@ -2,10 +2,12 @@
 
 package com.example.marvelapp.ui
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.snapping.SnapLayoutInfoProvider
 import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -22,6 +24,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,9 +34,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
-import com.example.marvelapp.data.HeroCardWithBack
 import com.example.marvelapp.R
-import com.example.marvelapp.data.HeroData
 import com.example.marvelapp.navigation.Screens
 import com.example.marvelapp.network.view.MarvelUiState
 import com.example.marvelapp.network.view.MarvelViewModel
@@ -47,7 +48,7 @@ import kotlinx.coroutines.launch
 fun StartSlideScreen(
     modifier: Modifier = Modifier,
     navController: NavHostController,
-    marvelViewModel: MarvelViewModel,
+    marvelViewModel: MarvelViewModel
 ) {
     when (marvelViewModel.marvelUiState) {
 
@@ -65,6 +66,7 @@ fun StartSlideScreen(
     }
 }
 
+@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun SlideScreen(
     modifier: Modifier,
@@ -73,18 +75,7 @@ fun SlideScreen(
 ) {
     val state = rememberLazyListState()
 
-    val characters = marvelViewModel.characters.value!!
-    val charactersNumber = characters.size
-
-    val cards: List<HeroCardWithBack> by lazy {
-        (0 until charactersNumber).map { i ->
-            HeroCardWithBack(
-                backgroundColor = HeroData.color[i],
-                imageLink = "${characters[i].image.path}.${characters[i].image.extension}",
-                name = characters[i].name
-            )
-        }
-    }
+    val cards = marvelViewModel.getCharacterCards()
 
     Box(modifier = modifier) {
 
@@ -99,6 +90,9 @@ fun SlideScreen(
 
             HeroHeaderBlock()
 
+            val scope = rememberCoroutineScope()
+            val characters = marvelViewModel.characters.value
+
             LazyRow(
                 modifier = Modifier.fillMaxSize(),
                 contentPadding = PaddingValues(
@@ -112,9 +106,6 @@ fun SlideScreen(
             ) {
                 itemsIndexed(cards) { index, card ->
 
-                    val scope = rememberCoroutineScope()
-                    val currentCharacter = characters[index]
-
                     CardHeroUi(
                         Modifier
                             .clip(RoundedCornerShape(dimensionResource(R.dimen.corner_slideCard)))
@@ -126,7 +117,7 @@ fun SlideScreen(
 
                                 scope.launch {
 
-                                    marvelViewModel.setCurrentCharacter(currentCharacter)
+                                    marvelViewModel.setCurrentCharacter(characters[index])
                                     navController.navigate(Screens.FullCard.route)
                                 }
                             },

@@ -92,4 +92,5 @@ dependencies {
     implementation(libs.moshi)
     implementation(libs.okhttp)
     implementation(libs.interceptor)
+    implementation(libs.arrow)
 }

@@ -1,4 +1,7 @@
-@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class)
+@file:OptIn(
+    ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class,
+    ExperimentalMaterial3Api::class
+)
 
 package com.example.marvelapp.ui
 
@@ -24,7 +27,7 @@ import com.example.marvelapp.navigation.Screens
 import com.example.marvelapp.network.view.MarvelViewModel
 import com.example.marvelapp.data.HeroCardWithDesc
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "StateFlowValueCalledInComposition")
 @Composable
 fun FullCardScreen(
     marvelViewModel: MarvelViewModel,
@@ -57,17 +60,17 @@ fun FullCardScreen(
             )
         }
     ) {
-        val card = marvelViewModel.character.value
-        if (card != null) {
-            CardHeroUi(
-                modifier = modifier,
-                card = HeroCardWithDesc(
-                    card.description,
-                    imageLink = "${card.image.path}.${card.image.extension}",
-                    card.name
-                )
+        val card = marvelViewModel.character.value!!
+
+        CardHeroUi(
+            modifier = modifier,
+            card = HeroCardWithDesc(
+                card.description,
+                imageLink = "${card.image.path}.${card.image.extension}",
+                card.name
             )
-        }
+        )
+
     }
 }
 

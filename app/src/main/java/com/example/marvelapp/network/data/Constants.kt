@@ -1,21 +1,13 @@
 package com.example.marvelapp.network.data
 
-import com.example.marvelapp.BuildConfig
-import java.math.BigInteger
-import java.security.MessageDigest
-
 class Constants {
 
     companion object {
-        val timeStamp = System.currentTimeMillis().toString()
-        const val BASE_URL = BuildConfig.MARVEL_BASE_URL
-        private const val PRIVATE_KEY = BuildConfig.MARVEL_PRIVATE_KEY
-        const val API_KEY = BuildConfig.MARVEL_PUBLIC_KEY
-        const val limit = 3
-        fun hash(): String {
-            val input = timeStamp + PRIVATE_KEY + API_KEY
-            val md = MessageDigest.getInstance("MD5")
-            return BigInteger(1, md.digest(input.toByteArray())).toString(16).padStart(32, '0')
-        }
+        const val TIMESTAMP = "1"
+        const val BASE_URL = "https://gateway.marvel.com/v1/public/"
+        const val API_KEY = "2d9b35a6a4117cb1b71dcd560437db45"
+        const val HASH = "3f1fd28b9a529af0f893b2466f0976bf"
+        const val LIMIT = "3"
     }
 }
+

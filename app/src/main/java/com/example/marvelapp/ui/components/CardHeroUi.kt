@@ -117,6 +117,7 @@ fun PreviewCardHeroUiStartScreen() {
                     .size(355.dp, 620.dp),
 
                 card = HeroCard(
+                    id = 1,
                     imageLink = "https://iili.io/JMnAfIV.png",
                     name = "Deadpool"
                 )
@@ -138,6 +139,7 @@ fun PreviewCardHeroUiFullScreen() {
                     .size(355.dp, 620.dp),
 
                 card = HeroCardWithDesc(
+                    id = 1,
                     imageLink = "https://iili.io/JMnAfIV.png",
                     name = "Deadpool",
                     description = "Please don’t make the super suit green...or animated!"

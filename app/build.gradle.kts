@@ -1,6 +1,9 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.8.10"
 }
 
 android {
@@ -18,6 +21,18 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        val localProperties = Properties().apply {
+            load(rootProject.file("local.properties").inputStream())
+        }
+        val marvelBaseUrl by localProperties
+        val marvelPublicKey by localProperties
+        val marvelPrivateKey by localProperties
+
+        buildConfigField("String", "MARVEL_BASE_URL", "$marvelBaseUrl")
+        buildConfigField("String", "MARVEL_PUBLIC_KEY", "$marvelPublicKey")
+        buildConfigField("String", "MARVEL_PRIVATE_KEY", "$marvelPrivateKey")
+
     }
 
     buildTypes {
@@ -38,6 +53,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -72,5 +88,9 @@ dependencies {
     implementation(libs.coil)
     implementation(libs.navigation)
     implementation(libs.accomponistSystemUiController)
-
+    implementation(libs.retrofit)
+    implementation(libs.moshi)
+    implementation(libs.okhttp)
+    implementation(libs.interceptor)
+    implementation(libs.arrow)
 }

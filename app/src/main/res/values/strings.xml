@@ -4,12 +4,7 @@
 
     <string name="header_title">Choose your hero</string>
 
-    <string name="deadpool">Deadpool</string>
-    <string name="iron_man">Iron Man</string>
-    <string name="spider_man">Spider Man</string>
-
-    <string name="description_deadpool">Please don’t make the super suit green...or animated!</string>
-    <string name="description_iron_man">I AM IRON MAN</string>
-    <string name="description_spider_man">In iron suit</string>
+    <string name="loading_failed">Failed to load</string>
+    <string name="loading">Loading</string>
 
 </resources>

@@ -30,4 +30,10 @@
     <dimen name="size_iconButton">80dp</dimen>
     <dimen name="padding_iconButtonTop">20dp</dimen>
 
+    <dimen name="padding_errorScreenText">16dp</dimen>
+
+    <dimen name="size_loadingScreenImage">200dp</dimen>
+    <dimen name="spacer_textAndImage">20dp</dimen>
+
+
 </resources>

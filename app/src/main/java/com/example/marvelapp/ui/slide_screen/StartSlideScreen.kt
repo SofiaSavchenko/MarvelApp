@@ -1,9 +1,8 @@
-@file:OptIn(ExperimentalFoundationApi::class, ExperimentalFoundationApi::class,
-    ExperimentalFoundationApi::class
-)
+@file:OptIn(ExperimentalFoundationApi::class)
 
-package com.example.marvelapp.ui
+package com.example.marvelapp.ui.slide_screen
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
@@ -18,30 +17,69 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.dimensionResource
 import androidx.navigation.NavHostController
-import com.example.marvelapp.objects.HeroCardWithBack
 import com.example.marvelapp.R
-import com.example.marvelapp.ui.components.CardHeroUi
-import com.example.marvelapp.ui.components.HeroHeaderBlock
+import com.example.marvelapp.data.HeroCardWithBack
 import com.example.marvelapp.navigation.Screens
+import com.example.marvelapp.network.model.UiState
+import com.example.marvelapp.ui.components.CardHeroUi
 import com.example.marvelapp.ui.components.DrawCardBackground
+import com.example.marvelapp.ui.components.ErrorScreen
+import com.example.marvelapp.ui.components.HeroHeaderBlock
+import com.example.marvelapp.ui.components.LoadingScreen
+import com.example.marvelapp.ui.slide_screen.model.SlideViewModel
+import kotlinx.coroutines.launch
 
 @Composable
 fun StartSlideScreen(
     modifier: Modifier = Modifier,
-    cards: List<HeroCardWithBack>,
     navController: NavHostController,
+    viewModel: SlideViewModel
+) {
+
+    val uiState = viewModel.uiState.collectAsState()
+
+    LaunchedEffect(key1 = uiState.value){
+        viewModel.observeData()
+    }
+
+    when (uiState.value.uiState) {
+
+        is UiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
+
+        is UiState.Success -> SlideScreen(
+            modifier = modifier,
+            navController = navController,
+            characterCards = uiState.value.characterCards
+        )
+
+        is UiState.Error -> {
+            ErrorScreen(modifier = Modifier.fillMaxSize())
+        }
+    }
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@SuppressLint("StateFlowValueCalledInComposition")
+@Composable
+fun SlideScreen(
+    modifier: Modifier,
+    navController: NavHostController,
+    characterCards: List<HeroCardWithBack>
 ) {
     val state = rememberLazyListState()
 
     Box(modifier = modifier) {
 
         DrawCardBackground(
-            color = cards[state.firstVisibleItemIndex].backgroundColor
+            color = characterCards[state.firstVisibleItemIndex].backgroundColor
         )
 
         Column(
@@ -50,6 +88,8 @@ fun StartSlideScreen(
         ) {
 
             HeroHeaderBlock()
+
+            val scope = rememberCoroutineScope()
 
             LazyRow(
                 modifier = Modifier.fillMaxSize(),
@@ -62,7 +102,7 @@ fun StartSlideScreen(
                 state = state,
                 flingBehavior = rememberSnapFlingBehavior(lazyListState = state)
             ) {
-                itemsIndexed(cards) { index, card ->
+                itemsIndexed(characterCards) { _, card ->
 
                     CardHeroUi(
                         Modifier
@@ -73,7 +113,10 @@ fun StartSlideScreen(
                             )
                             .clickable {
 
-                                navController.navigate("${Screens.FullCard.route}/${index}")
+                                scope.launch {
+
+                                    navController.navigate("${Screens.FullCard.route}/${card.id}")
+                                }
                             },
                         card
                     )
@@ -85,4 +128,3 @@ fun StartSlideScreen(
 
     }
 }
-

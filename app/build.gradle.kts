@@ -4,6 +4,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.serialization") version "1.8.10"
+    id("dagger.hilt.android.plugin")
+    kotlin("kapt")
 }
 
 android {
@@ -88,9 +90,19 @@ dependencies {
     implementation(libs.coil)
     implementation(libs.navigation)
     implementation(libs.accomponistSystemUiController)
+
     implementation(libs.retrofit)
     implementation(libs.moshi)
     implementation(libs.okhttp)
     implementation(libs.interceptor)
     implementation(libs.arrow)
+
+    implementation(libs.room)
+    kapt(libs.roomCompiler)
+    annotationProcessor(libs.roomCompiler)
+    implementation(libs.roomKtx)
+
+    implementation(libs.daggerHilt)
+    kapt(libs.hilt)
+    implementation(libs.hiltNavigation)
 }

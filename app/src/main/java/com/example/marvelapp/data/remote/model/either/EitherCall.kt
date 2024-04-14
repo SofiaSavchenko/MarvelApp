@@ -1,9 +1,9 @@
 package com.example.marvelapp.data.remote.model.either
 
 import com.example.marvelapp.data.remote.ApiError
-import com.example.marvelapp.data.remote.HttpError
-import com.example.marvelapp.data.remote.NetworkError
-import com.example.marvelapp.data.remote.UnknownApiError
+import com.example.marvelapp.data.remote.ApiError.HttpError
+import com.example.marvelapp.data.remote.ApiError.NetworkError
+import com.example.marvelapp.data.remote.ApiError.UnknownApiError
 import okhttp3.Request
 import okio.Timeout
 import retrofit2.Call

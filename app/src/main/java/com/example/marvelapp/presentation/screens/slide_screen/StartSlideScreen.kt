@@ -29,12 +29,12 @@ import com.example.marvelapp.R
 import com.example.marvelapp.domain.model.CharacterUi
 import com.example.marvelapp.presentation.util.CharacterColors
 import com.example.marvelapp.presentation.screens.Screens
-import com.example.marvelapp.presentation.screens.UiState
 import com.example.marvelapp.presentation.screens.slide_screen.components.DrawCardBackground
 import com.example.marvelapp.presentation.screens.components.ErrorScreen
 import com.example.marvelapp.presentation.screens.slide_screen.components.HeroHeaderBlock
 import com.example.marvelapp.presentation.screens.components.LoadingScreen
 import com.example.marvelapp.presentation.screens.slide_screen.components.CharacterSlideView
+import com.example.marvelapp.presentation.screens.slide_screen.model.SlideUiState
 import com.example.marvelapp.presentation.screens.slide_screen.model.SlideViewModel
 import kotlinx.coroutines.launch
 
@@ -51,17 +51,17 @@ fun StartSlideScreen(
         viewModel.observeData()
     }
 
-    when (uiState.value.uiState) {
+    when (uiState.value) {
 
-        is UiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
+        is SlideUiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
 
-        is UiState.Success -> SlideScreen(
+        is SlideUiState.Success -> SlideScreen(
             modifier = modifier,
             navController = navController,
-            characterCards = uiState.value.characterCards
+            characterCards = (uiState.value as SlideUiState.Success).data
         )
 
-        is UiState.Error -> {
+        is SlideUiState.Error -> {
             ErrorScreen(modifier = Modifier.fillMaxSize())
         }
     }

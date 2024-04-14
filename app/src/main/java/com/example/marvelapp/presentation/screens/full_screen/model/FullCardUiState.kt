@@ -1,11 +1,9 @@
 package com.example.marvelapp.presentation.screens.full_screen.model
 
 import com.example.marvelapp.domain.model.CharacterUi
-import com.example.marvelapp.presentation.screens.UiState
 
-data class FullCardUiState(
-
-    val uiState : UiState = UiState.Loading,
-    val characterCard: CharacterUi? = null
-
-)
+sealed class FullCardUiState {
+    data object Loading : FullCardUiState()
+    data class Error(val error: Throwable) : FullCardUiState()
+    data class Success(val data: CharacterUi) : FullCardUiState()
+}

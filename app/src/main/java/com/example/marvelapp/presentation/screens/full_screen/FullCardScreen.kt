@@ -27,10 +27,10 @@ import androidx.navigation.NavHostController
 import com.example.marvelapp.R
 import com.example.marvelapp.domain.model.CharacterUi
 import com.example.marvelapp.presentation.screens.Screens
-import com.example.marvelapp.presentation.screens.UiState
 import com.example.marvelapp.presentation.screens.components.ErrorScreen
 import com.example.marvelapp.presentation.screens.components.LoadingScreen
 import com.example.marvelapp.presentation.screens.full_screen.components.CharacterView
+import com.example.marvelapp.presentation.screens.full_screen.model.FullCardUiState
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "StateFlowValueCalledInComposition")
 @Composable
@@ -49,18 +49,18 @@ fun FullCardScreen(
 
     }
 
-    when (uiState.value.uiState) {
+    when (uiState.value) {
 
-        UiState.Loading -> LoadingScreen(modifier = Modifier.fillMaxSize())
-        UiState.Success -> {
+        is FullCardUiState.Loading -> LoadingScreen(modifier = Modifier.fillMaxSize())
+        is FullCardUiState.Success -> {
             FullScreen(
-                characterCard = uiState.value.characterCard!!,
                 modifier = modifier,
-                navController = navController
+                navController = navController,
+                characterCard = (uiState.value as FullCardUiState.Success).data
             )
         }
 
-        UiState.Error -> ErrorScreen(modifier = Modifier.fillMaxSize())
+        is FullCardUiState.Error -> ErrorScreen(modifier = Modifier.fillMaxSize())
     }
 
 }
@@ -69,9 +69,9 @@ fun FullCardScreen(
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun FullScreen(
-    characterCard: CharacterUi,
     modifier: Modifier,
-    navController: NavHostController
+    navController: NavHostController,
+    characterCard: CharacterUi
 ) {
 
     Scaffold(

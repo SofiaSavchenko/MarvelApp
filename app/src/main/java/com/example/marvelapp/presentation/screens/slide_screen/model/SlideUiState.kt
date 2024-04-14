@@ -1,11 +1,8 @@
 package com.example.marvelapp.presentation.screens.slide_screen.model
 
 import com.example.marvelapp.domain.model.CharacterUi
-import com.example.marvelapp.presentation.screens.UiState
-
-data class SlideUiState(
-
-    val uiState : UiState = UiState.Loading,
-    val characterCards: List<CharacterUi> = emptyList()
-
-)
+sealed class SlideUiState {
+    data object Loading : SlideUiState()
+    data class Error(val error: Throwable) : SlideUiState()
+    data class Success(val data: List<CharacterUi>) : SlideUiState()
+}

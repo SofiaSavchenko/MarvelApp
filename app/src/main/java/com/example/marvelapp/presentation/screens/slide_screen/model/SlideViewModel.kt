@@ -2,14 +2,12 @@ package com.example.marvelapp.presentation.screens.slide_screen.model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.marvelapp.data.remote.model.either.Either
 import com.example.marvelapp.domain.repo.Repository
-import com.example.marvelapp.presentation.screens.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,34 +16,18 @@ class SlideViewModel @Inject constructor(
     private val repository: Repository
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(SlideUiState())
+    private val _uiState = MutableStateFlow<SlideUiState>(SlideUiState.Loading)
     val uiState: StateFlow<SlideUiState> = _uiState.asStateFlow()
 
-    suspend fun observeData() {
+    fun observeData() {
 
         viewModelScope.launch {
 
-            when (val result = repository.getCharacters()) {
-
-                is Either.Success -> {
-
-                    val cards = result.value
-
-                    _uiState.update {
-                        it.copy(
-                            uiState = UiState.Success,
-                            characterCards = cards
-                        )
-                    }
-                }
-
-                is Either.Fail -> {
-                    _uiState.update { it.copy(uiState = UiState.Error) }
-                }
-
-            }
-
+            repository.getCharacters()
+                .catch { error ->
+                    _uiState.emit(SlideUiState.Error(error)) }
+                .collect { characterList ->
+                    _uiState.emit(SlideUiState.Success(characterList)) }
         }
     }
-
 }

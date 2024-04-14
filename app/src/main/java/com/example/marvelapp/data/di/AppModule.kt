@@ -52,29 +52,19 @@ object AppModule {
     }
 
     @Provides
-    fun providesRetrofitApi(retrofit: Retrofit): ApiService {
-
-        return retrofit.create(ApiService::class.java)
-    }
+    fun providesRetrofitApi(retrofit: Retrofit): ApiService =
+        retrofit.create(ApiService::class.java)
 
     @Provides
-    fun providesRoomDao(db: AppDatabase): Dao {
-
-        return db.dao()
-    }
+    fun providesRoomDao(db: AppDatabase): Dao = db.dao()
 
     @Singleton
     @Provides
-    fun providesRoomDb(@ApplicationContext appContext: Context): AppDatabase {
-
-        return AppDatabase.getDatabase(appContext)
-    }
+    fun providesRoomDb(@ApplicationContext appContext: Context): AppDatabase =
+        AppDatabase.getDatabase(appContext)
 
     @Provides
     @Singleton
-    fun providesRepo(db: AppDatabase, api: ApiService): Repository {
-
-        return RepositoryImpl(db.dao(), api)
-    }
+    fun providesRepo(db: AppDatabase, api: ApiService): Repository = RepositoryImpl(db.dao(), api)
 
 }

@@ -8,23 +8,27 @@ import com.example.marvelapp.data.mapper.toCharacterListEntityFromDTO
 import com.example.marvelapp.data.mapper.toCharacterListUiFromDTO
 import com.example.marvelapp.data.mapper.toCharacterListUiFromEntity
 import com.example.marvelapp.data.remote.ApiService
-import com.example.marvelapp.data.remote.ApiError
 import com.example.marvelapp.data.remote.model.either.Either
 import com.example.marvelapp.data.mapper.toCharacterUiFromDTO
 import com.example.marvelapp.data.mapper.toCharacterUiFromEntity
 import com.example.marvelapp.domain.repo.Repository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 
 
 class RepositoryImpl(private val dao: Dao, private val api: ApiService) : Repository {
 
-    override suspend fun getCharacters(): Either<ApiError, List<CharacterUi>> {
+    override suspend fun getCharacters(): Flow<List<CharacterUi>> = flow {
 
         val characterListEntity = dao.getAllCharacters().first()
 
-        return if (characterListEntity.isNotEmpty()) {
+        if (characterListEntity.isNotEmpty()) {
 
-            Either.success(characterListEntity.toCharacterListUiFromEntity())
+            emit(characterListEntity.toCharacterListUiFromEntity())
 
         } else {
 
@@ -38,23 +42,25 @@ class RepositoryImpl(private val dao: Dao, private val api: ApiService) : Reposi
 
                     val characterListUi = characterListDTO.toCharacterListUiFromDTO()
 
-                    Either.success(characterListUi)
+                    emit(characterListUi)
                 }
 
-                is Either.Fail -> Either.fail(result.value)
+                is Either.Fail -> throw Throwable(result.value.toString())
 
             }
         }
 
-    }
+    }.flowOn(Dispatchers.IO)
+        .catch { error -> throw error }
 
-    override suspend fun getCharacterById(id: Int): Either<ApiError, CharacterUi> {
+
+    override suspend fun getCharacterById(id: Int): Flow<CharacterUi> = flow {
 
         val characterEntity = dao.getCharacterById(id).first()
 
-        return if (characterEntity != null) {
+        if (characterEntity != null) {
 
-            Either.success(characterEntity.toCharacterUiFromEntity())
+            emit(characterEntity.toCharacterUiFromEntity())
 
         } else {
 
@@ -68,14 +74,15 @@ class RepositoryImpl(private val dao: Dao, private val api: ApiService) : Reposi
 
                     val characterUi = characterDTO.toCharacterUiFromDTO()
 
-                    Either.success(characterUi)
+                    emit(characterUi)
                 }
 
-                is Either.Fail -> Either.fail(result.value)
+                is Either.Fail -> throw Throwable(result.value.toString())
             }
         }
 
-    }
+    }.flowOn(Dispatchers.IO)
+        .catch { error -> throw error }
 
     private suspend fun refreshRoomCache(characters: List<CharacterEntity>) {
 

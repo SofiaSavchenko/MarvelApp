@@ -61,22 +61,16 @@ fun CharacterView(
 
             Text(
                 text = card.description,
-                modifier = Modifier
-                    .size(
-                        height = dimensionResource(R.dimen.size_descriptionHeight),
-                        width = dimensionResource(R.dimen.size_descriptionWidth)
-                    )
-                    .alpha(0.9f),
+                modifier = Modifier.alpha(0.9f),
                 color = Color.White,
                 style = MarvelAppTheme.TextStyle.Bold_22
             )
-
         }
 
     }
 
-
 }
+
 
 @Preview
 @Composable

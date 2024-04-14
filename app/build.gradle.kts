@@ -24,17 +24,6 @@ android {
             useSupportLibrary = true
         }
 
-        val localProperties = Properties().apply {
-            load(rootProject.file("local.properties").inputStream())
-        }
-        val marvelBaseUrl by localProperties
-        val marvelPublicKey by localProperties
-        val marvelPrivateKey by localProperties
-
-        buildConfigField("String", "MARVEL_BASE_URL", "$marvelBaseUrl")
-        buildConfigField("String", "MARVEL_PUBLIC_KEY", "$marvelPublicKey")
-        buildConfigField("String", "MARVEL_PRIVATE_KEY", "$marvelPrivateKey")
-
     }
 
     buildTypes {

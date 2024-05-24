@@ -7,8 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
-import com.example.marvelapp.presentation.navigation.AppNavigation
-import com.example.marvelapp.ui.theme.MarvelAppTheme
+import com.example.core_ui.theme.MarvelAppTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -1,5 +1,3 @@
-import java.util.Properties
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -58,7 +56,6 @@ android {
 
 dependencies {
 
-
     implementation(libs.coreKtx)
     implementation(libs.lifecycleKtx)
     implementation(platform(libs.composeBom))
@@ -76,15 +73,8 @@ dependencies {
     implementation(libs.jUnitUi)
     implementation(libs.espressoTest)
 
-    implementation(libs.coil)
     implementation(libs.navigation)
     implementation(libs.accomponistSystemUiController)
-
-    implementation(libs.retrofit)
-    implementation(libs.moshi)
-    implementation(libs.okhttp)
-    implementation(libs.interceptor)
-    implementation(libs.arrow)
 
     implementation(libs.room)
     kapt(libs.roomCompiler)
@@ -94,4 +84,11 @@ dependencies {
     implementation(libs.daggerHilt)
     kapt(libs.hilt)
     implementation(libs.hiltNavigation)
+
+    implementation(project(":core"))
+    implementation(project(":core-ui"))
+    implementation(project(":database"))
+    implementation(project(":network"))
+    implementation(project(":screens:full"))
+    implementation(project(":screens:slide"))
 }

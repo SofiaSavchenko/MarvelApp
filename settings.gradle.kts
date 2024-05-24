@@ -20,3 +20,12 @@ dependencyResolutionManagement {
 
 rootProject.name = "MarvelApp"
 include(":app")
+include(":core")
+include(":network")
+include(":screens")
+include(":core-ui")
+include(":full")
+include(":screens:slide")
+include(":screens:full")
+include(":database")
+include(":navigation")

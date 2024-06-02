@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.serialization") version "1.8.10"
     id("dagger.hilt.android.plugin")
+    id("com.google.gms.google-services")
     kotlin("kapt")
 }
 
@@ -84,6 +85,10 @@ dependencies {
     implementation(libs.daggerHilt)
     kapt(libs.hilt)
     implementation(libs.hiltNavigation)
+
+    implementation(platform(libs.firebaseBom))
+    implementation(libs.firebaseAnalytics)
+    implementation(libs.firebaseMessaging)
 
     implementation(project(":core"))
     implementation(project(":core-ui"))

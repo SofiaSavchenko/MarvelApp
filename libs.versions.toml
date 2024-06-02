@@ -1,9 +1,9 @@
 [versions]
-core-ktx = "1.12.0"
-lifecycle-runtime-ktx = "2.7.0"
-compose-bom = "2024.04.00"
-activity-compose = "1.8.2"
-runtime = "1.6.5"
+core-ktx = "1.13.1"
+lifecycle-runtime-ktx = "2.8.1"
+compose-bom = "2024.05.00"
+activity-compose = "1.9.0"
+runtime = "1.6.7"
 junit = "4.13.2"
 junit-ext = "1.1.5"
 espresso = "3.5.1"
@@ -21,7 +21,8 @@ daggerHilt = "2.51.1"
 hiltNavigation = "1.2.0"
 agp = "8.2.2"
 kotlin = "1.9.0"
-appcompat = "1.6.1"
+appcompat = "1.7.0"
+firebaseBom = "33.1.0"
 material = "1.12.0"
 
 [libraries]
@@ -60,7 +61,13 @@ hilt = {group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt
 daggerHilt = {group = "com.google.dagger", name = "hilt-android", version.ref = "daggerHilt"}
 hiltNavigation = {group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigation"}
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
+firebaseBom = {group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom"}
+firebaseAnalytics = {group = "com.google.firebase", name = "firebase-analytics"}
+firebaseMessaging = {group = "com.google.firebase", name = "firebase-messaging"}
+
 [plugins]
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

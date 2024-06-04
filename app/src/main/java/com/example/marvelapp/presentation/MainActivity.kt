@@ -10,11 +10,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
-import androidx.core.app.ActivityCompat
 import androidx.core.view.WindowCompat
 import com.example.core_ui.theme.MarvelAppTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,30 +21,31 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setup()
+    }
 
+    private fun setup() {
+        setupFirebase()
+        setupNotificationPermission()
+        setupSystemBarColors()
+        setContent {
+            SetupUI()
+        }
+    }
+
+    private fun setupFirebase() {
         FirebaseApp.initializeApp(this)
-
-        if (Build.VERSION.SDK_INT > 32) {
-            if (!shouldShowRequestPermissionRationale("112")) {
-                getNotificationPermission();
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val token = task.result
+                Log.e("TAG", "Token: $token")
             }
         }
-        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-            if (!task.isSuccessful) {
-                return@OnCompleteListener
-            }
-            val token = task.result
-            Log.e("TAG", "Token: $token")
-        })
+    }
 
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-
-        setContent {
-            MarvelAppTheme {
-
-                ApplySystemBarColors()
-                AppNavigation()
-            }
+    private fun setupNotificationPermission() {
+        if (Build.VERSION.SDK_INT > 32 && !shouldShowRequestPermissionRationale("112")) {
+            getNotificationPermission()
         }
     }
 
@@ -55,7 +54,7 @@ class MainActivity : ComponentActivity() {
             if (Build.VERSION.SDK_INT > 32) {
                 requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
             }
-        } catch (e: Exception) {
+        } catch (_: Exception) {
         }
     }
 
@@ -67,15 +66,25 @@ class MainActivity : ComponentActivity() {
                 Log.d("TAG", "Status: denied")
             }
         }
-}
 
-@Composable
-private fun ApplySystemBarColors() {
+    private fun setupSystemBarColors() {
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+    }
 
-    val systemUiController = rememberSystemUiController()
+    @Composable
+    private fun SetupUI() {
+        MarvelAppTheme {
+            ApplySystemBarColors()
+            AppNavigation()
+        }
+    }
 
-    SideEffect {
-        systemUiController.setStatusBarColor(color = Color.Transparent)
-        systemUiController.setNavigationBarColor(color = Color.Transparent)
+    @Composable
+    private fun ApplySystemBarColors() {
+        val systemUiController = rememberSystemUiController()
+        SideEffect {
+            systemUiController.setStatusBarColor(color = Color.Transparent)
+            systemUiController.setNavigationBarColor(color = Color.Transparent)
+        }
     }
 }

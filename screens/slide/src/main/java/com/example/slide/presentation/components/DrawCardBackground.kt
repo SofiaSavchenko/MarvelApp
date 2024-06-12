@@ -18,7 +18,6 @@ fun DrawCardBackground(color: Color) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(MarvelAppTheme.backgroundScreen)
     )
     {
         Canvas(

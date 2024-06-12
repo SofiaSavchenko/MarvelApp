@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -36,7 +37,6 @@ fun HeroHeaderBlock() {
 
         Text(
             text = stringResource(R.string.header_title),
-            color = Color.White,
             style = MarvelAppTheme.TextStyle.ExtraBold_28
         )
     }
@@ -60,7 +60,7 @@ private fun LoadLogoImage() {
 fun PreviewHeroHeader() {
     MarvelAppTheme {
 
-        Surface(color = MarvelAppTheme.backgroundScreen) {
+        Surface(color = MaterialTheme.colorScheme.secondary) {
 
             HeroHeaderBlock()
         }

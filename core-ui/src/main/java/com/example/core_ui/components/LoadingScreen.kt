@@ -22,8 +22,7 @@ import com.example.core_ui.theme.MarvelAppTheme
 @Composable
 fun LoadingScreen(modifier: Modifier = Modifier) {
     Box(
-        modifier = modifier
-            .background(MarvelAppTheme.loadingScreen),
+        modifier = modifier,
         contentAlignment = Alignment.Center
     ) {
 
@@ -35,7 +34,7 @@ fun LoadingScreen(modifier: Modifier = Modifier) {
 
             Text(
                 text = stringResource(R.string.app_name),
-                color = Color.White,
+//                color = Color.White,
                 style = MarvelAppTheme.TextStyle.ExtraBold_45
             )
 

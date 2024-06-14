@@ -43,26 +43,10 @@ fun CharacterSlideView(
         )
         CompositionLocalProvider(value = LocalLayoutDirection provides LayoutDirection.Ltr) {
 
-            val paddingStart = if (LocalLayoutDirection.current == LayoutDirection.Rtl) {
-                0.dp
-            } else {
-                dimensionResource(R.dimen.padding_titleStart)
-            }
-
-            val paddingEnd = if (LocalLayoutDirection.current == LayoutDirection.Ltr) {
-                dimensionResource(R.dimen.padding_titleStart)
-            } else {
-                0.dp
-            }
-
             Text(
                 text = card.name,
                 modifier = Modifier
-                    .padding(
-                        start = paddingStart,
-                        end = paddingEnd,
-                        bottom = dimensionResource(R.dimen.padding_titleBottom)
-                    )
+                    .padding(dimensionResource(id = R.dimen.padding_text))
                     .align(Alignment.BottomStart),
                 style = MarvelAppTheme.TextStyle.ExtraBold_32
             )

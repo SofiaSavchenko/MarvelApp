@@ -11,29 +11,71 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
 import com.example.core_ui.theme.MarvelAppTheme
+import com.example.core_ui.utils.DeviceScreenConfiguration
+import com.example.core_ui.utils.getDeviceScreenConfiguration
+import com.example.core_ui.utils.isLandscape
 import com.example.slide.R
+import com.example.slide.presentation.utils.compactPaddingLandscape
+import com.example.slide.presentation.utils.compactPaddingPortrait
+import com.example.slide.presentation.utils.compactSpacerLandscape
+import com.example.slide.presentation.utils.compactSpacerPortrait
+import com.example.slide.presentation.utils.expandedPaddingLandscape
+import com.example.slide.presentation.utils.expandedPaddingPortrait
+import com.example.slide.presentation.utils.expandedSpacerLandscape
+import com.example.slide.presentation.utils.expandedSpacerPortrait
+import com.example.slide.presentation.utils.mediumPaddingLandscape
+import com.example.slide.presentation.utils.mediumPaddingPortrait
+import com.example.slide.presentation.utils.mediumSpacerLandscape
+import com.example.slide.presentation.utils.mediumSpacerPortrait
 
 @Composable
 fun HeroHeaderBlock() {
 
+    val landscapePadding = when (getDeviceScreenConfiguration().screenWidth) {
+        DeviceScreenConfiguration.DeviceScreenSize.Compact -> compactPaddingLandscape
+        DeviceScreenConfiguration.DeviceScreenSize.Expanded -> expandedPaddingLandscape
+        DeviceScreenConfiguration.DeviceScreenSize.Medium -> mediumPaddingLandscape
+    }
+
+    val portraitPadding = when (getDeviceScreenConfiguration().screenHeight) {
+        DeviceScreenConfiguration.DeviceScreenSize.Compact -> compactPaddingPortrait
+        DeviceScreenConfiguration.DeviceScreenSize.Expanded -> expandedPaddingPortrait
+        DeviceScreenConfiguration.DeviceScreenSize.Medium -> mediumPaddingPortrait
+    }
+
+    val portraitSpacer = when (getDeviceScreenConfiguration().screenHeight) {
+        DeviceScreenConfiguration.DeviceScreenSize.Compact -> compactSpacerPortrait
+        DeviceScreenConfiguration.DeviceScreenSize.Expanded -> expandedSpacerPortrait
+        DeviceScreenConfiguration.DeviceScreenSize.Medium -> mediumSpacerPortrait
+    }
+
+    val landscapeSpacer = when (getDeviceScreenConfiguration().screenHeight) {
+        DeviceScreenConfiguration.DeviceScreenSize.Compact -> compactSpacerLandscape
+        DeviceScreenConfiguration.DeviceScreenSize.Expanded -> expandedSpacerLandscape
+        DeviceScreenConfiguration.DeviceScreenSize.Medium -> mediumSpacerLandscape
+    }
+
     Column(
-        modifier = Modifier.padding(
-            top = dimensionResource(R.dimen.padding_headerTop),
-            bottom = dimensionResource(R.dimen.padding_headerBottom)
-        ),
+        when (isLandscape()) {
+            true -> Modifier.padding(landscapePadding)
+            false -> Modifier.padding(portraitPadding)
+        },
+
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
         LoadLogoImage()
 
-        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacer_header)))
+        when (isLandscape()) {
+            true -> Spacer(modifier = Modifier.height(landscapeSpacer))
+            false -> Spacer(modifier = Modifier.height(portraitSpacer))
+        }
 
         Text(
             text = stringResource(R.string.header_title),

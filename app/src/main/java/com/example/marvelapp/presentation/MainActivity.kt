@@ -20,6 +20,7 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.compose.ui.Modifier
+import com.example.marvelapp.utils.NotificationConstants.Companion.TOPIC
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -39,6 +40,7 @@ class MainActivity : ComponentActivity() {
 
     private fun setupFirebase() {
         FirebaseApp.initializeApp(this)
+        FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
         FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val token = task.result

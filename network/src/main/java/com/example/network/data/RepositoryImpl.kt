@@ -19,29 +19,25 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
 
-class RepositoryImpl(private val dao: Dao, private val api: ApiService) :
-    Repository {
+class RepositoryImpl(
+    private val dao: Dao,
+    private val api: ApiService
+) : Repository {
 
     override suspend fun getCharacters(): Flow<List<CharacterUi>> = flow {
 
         val characterListEntity = dao.getAllCharacters().first()
-
         if (characterListEntity.isNotEmpty()) {
 
             emit(characterListEntity.toCharacterListUiFromEntity())
 
         } else {
-
             when (val result = api.getCharacters()) {
 
                 is Either.Success -> {
-
                     val characterListDTO = result.value.data.results
-
                     refreshRoomCache(characterListDTO.toCharacterListEntityFromDTO())
-
                     val characterListUi = characterListDTO.toCharacterListUiFromDTO()
-
                     emit(characterListUi)
                 }
 
@@ -57,23 +53,17 @@ class RepositoryImpl(private val dao: Dao, private val api: ApiService) :
     override suspend fun getCharacterById(id: Int): Flow<CharacterUi> = flow {
 
         val characterEntity = dao.getCharacterById(id).first()
-
         if (characterEntity != null) {
 
             emit(characterEntity.toCharacterUiFromEntity())
 
         } else {
-
             when (val result = api.getCharacterById(id)) {
 
                 is Either.Success -> {
-
                     val characterDTO = result.value.data.results.first()
-
                     dao.addCharacter(characterDTO.toCharacterEntityFromDTO())
-
                     val characterUi = characterDTO.toCharacterUiFromDTO()
-
                     emit(characterUi)
                 }
 

@@ -115,7 +115,11 @@ fun SlideScreen(
 
             LazyRow(
                 modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(start = padding, end = padding, bottom = padding / 4),
+                contentPadding = PaddingValues(
+                    start = padding,
+                    end = padding,
+                    bottom = padding / 4
+                ),
                 horizontalArrangement = Arrangement.spacedBy(padding),
                 state = state,
                 flingBehavior = rememberSnapFlingBehavior(lazyListState = state)

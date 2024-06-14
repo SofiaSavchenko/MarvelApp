@@ -11,6 +11,5 @@ class EitherCallAdapter<R>(
 ) : CallAdapter<R, Call<Either<ApiError, R>>> {
 
     override fun adapt(call: Call<R>): Call<Either<ApiError, R>> = EitherCall(call, successType)
-
     override fun responseType(): Type = successType
 }

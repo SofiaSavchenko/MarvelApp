@@ -2,7 +2,6 @@ package com.example.full.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavController
 import com.example.network.data.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,13 +19,14 @@ class FullCardViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<FullCardUiState>(FullCardUiState.Loading)
     val uiState: StateFlow<FullCardUiState> = _uiState.asStateFlow()
 
-     fun observeDataById(id: Int) {
+    fun observeDataById(id: Int) {
 
         viewModelScope.launch {
 
             repository.getCharacterById(id)
                 .catch { error ->
-                    _uiState.emit(FullCardUiState.Error(error)) }
+                    _uiState.emit(FullCardUiState.Error(error))
+                }
                 .collect { character ->
                     _uiState.emit(FullCardUiState.Success(character))
                 }

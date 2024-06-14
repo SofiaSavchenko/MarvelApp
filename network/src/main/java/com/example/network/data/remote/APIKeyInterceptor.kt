@@ -3,7 +3,7 @@ package com.example.network.data.remote
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class APIKeyInterceptor: Interceptor {
+class APIKeyInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
 
         val apikey = ApiConstants.API_KEY

@@ -23,5 +23,3 @@ fun List<CharacterEntity>.toCharacterListUiFromEntity(): List<CharacterUi> {
         )
     }
 }
-
-

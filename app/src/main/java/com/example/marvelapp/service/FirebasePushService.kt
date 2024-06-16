@@ -10,7 +10,6 @@ class FirebasePushService : FirebaseMessagingService() {
         super.onNewToken(token)
         Log.e("TAG", "Token: $token")
     }
-
     override fun onMessageReceived(message: RemoteMessage) {
         NotificationHandler(this).sendNotification(message)
     }

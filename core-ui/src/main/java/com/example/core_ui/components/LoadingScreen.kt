@@ -1,7 +1,6 @@
 package com.example.core_ui.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,7 +11,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -22,8 +20,7 @@ import com.example.core_ui.theme.MarvelAppTheme
 @Composable
 fun LoadingScreen(modifier: Modifier = Modifier) {
     Box(
-        modifier = modifier
-            .background(MarvelAppTheme.loadingScreen),
+        modifier = modifier,
         contentAlignment = Alignment.Center
     ) {
 
@@ -35,7 +32,6 @@ fun LoadingScreen(modifier: Modifier = Modifier) {
 
             Text(
                 text = stringResource(R.string.app_name),
-                color = Color.White,
                 style = MarvelAppTheme.TextStyle.ExtraBold_45
             )
 
@@ -49,5 +45,4 @@ fun LoadingScreen(modifier: Modifier = Modifier) {
         }
 
     }
-
 }

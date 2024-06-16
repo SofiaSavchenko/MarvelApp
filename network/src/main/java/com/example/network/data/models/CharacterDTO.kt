@@ -1,6 +1,7 @@
 package com.example.network.data.models
 
 import com.squareup.moshi.Json
+
 data class CharacterDTO(
     @field:Json(name = "id")
     val id: Int,

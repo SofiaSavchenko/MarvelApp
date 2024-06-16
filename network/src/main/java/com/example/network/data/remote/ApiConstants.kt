@@ -10,4 +10,3 @@ class ApiConstants {
         const val LIMIT = "3"
     }
 }
-

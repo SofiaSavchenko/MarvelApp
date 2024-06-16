@@ -8,5 +8,6 @@ class NotificationConstants {
         const val NOTIFICATION_ID = 0
         const val REQUEST_CODE = 0
         const val URI = "marvelapp://root_screen/card_screen"
+        const val TOPIC = "marvel"
     }
 }

@@ -19,15 +19,17 @@ class SlideViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<SlideUiState>(SlideUiState.Loading)
     val uiState: StateFlow<SlideUiState> = _uiState.asStateFlow()
 
-     fun observeData() {
+    fun observeData() {
 
         viewModelScope.launch {
 
             repository.getCharacters()
                 .catch { error ->
-                    _uiState.emit(SlideUiState.Error(error)) }
+                    _uiState.emit(SlideUiState.Error(error))
+                }
                 .collect { characterList ->
-                    _uiState.emit(SlideUiState.Success(characterList)) }
+                    _uiState.emit(SlideUiState.Success(characterList))
+                }
         }
     }
 }

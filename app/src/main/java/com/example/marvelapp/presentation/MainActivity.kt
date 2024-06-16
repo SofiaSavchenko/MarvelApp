@@ -7,6 +7,9 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
@@ -16,6 +19,8 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.compose.ui.Modifier
+import com.example.marvelapp.utils.NotificationConstants.Companion.TOPIC
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -35,6 +40,7 @@ class MainActivity : ComponentActivity() {
 
     private fun setupFirebase() {
         FirebaseApp.initializeApp(this)
+        FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
         FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val token = task.result
@@ -74,8 +80,13 @@ class MainActivity : ComponentActivity() {
     @Composable
     private fun SetupUI() {
         MarvelAppTheme {
-            ApplySystemBarColors()
-            AppNavigation()
+            Surface(
+                modifier = Modifier.fillMaxSize(),
+                color = MaterialTheme.colorScheme.secondary
+            ) {
+                ApplySystemBarColors()
+                AppNavigation()
+            }
         }
     }
 

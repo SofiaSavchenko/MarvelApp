@@ -1,4 +1,4 @@
-package com.example.marvelapp.data.di
+package com.example.marvelapp.di
 
 import com.example.database.AppDatabase
 import com.example.network.data.Repository

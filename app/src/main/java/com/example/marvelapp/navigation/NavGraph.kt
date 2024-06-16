@@ -7,9 +7,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navDeepLink
 import com.example.core.Screens
 import com.example.full.presentation.FullCardScreen
 import com.example.full.presentation.FullCardViewModel
+import com.example.marvelapp.utils.NotificationConstants
 import com.example.slide.presentation.SlideViewModel
 import com.example.slide.presentation.StartSlideScreen
 
@@ -34,7 +36,10 @@ fun NavGraph(
         }
 
         composable(
-            route = "${Screens.FullCard.route}/{cardId}"
+            route = "${Screens.FullCard.route}/{cardId}",
+            deepLinks = listOf(
+                navDeepLink { uriPattern = "${NotificationConstants.URI}/{cardId}" }
+            )
 
         ) { backStackEntry ->
 

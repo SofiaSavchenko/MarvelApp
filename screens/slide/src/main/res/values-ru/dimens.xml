@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="size_logoImageHeight">30dp</dimen>
+    <dimen name="size_logoImageWidth">130dp</dimen>
+
+    <dimen name="corner_slideCard">10dp</dimen>
+
+</resources>

@@ -1,0 +1,70 @@
+[versions]
+core-ktx = "1.13.1"
+lifecycle-runtime-ktx = "2.8.1"
+compose-bom = "2024.05.00"
+activity-compose = "1.9.0"
+runtime = "1.6.7"
+junit = "4.13.2"
+junit-ext = "1.1.5"
+espresso = "3.5.1"
+coil = "2.6.0"
+navigation = "2.7.7"
+systemuicontroller = "0.30.1"
+retrofit = "2.9.0"
+interceptor = "4.12.0"
+okhttp = "4.12.0"
+moshi = "2.9.0"
+arrow = "1.0.0"
+room = "2.6.1"
+hilt = "2.51.1"
+daggerHilt = "2.51.1"
+hiltNavigation = "1.2.0"
+agp = "8.2.2"
+kotlin = "1.9.0"
+appcompat = "1.7.0"
+firebaseBom = "33.1.0"
+
+[libraries]
+coreKtx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
+lifecycleKtx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
+composeBom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
+composeActivity = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
+composeRuntime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "runtime" }
+composeUi = { group = "androidx.compose.ui", name = "ui"}
+composeGraphics = { group = "androidx.compose.ui", name = "ui-graphics"}
+composePreview = { group = "androidx.compose.ui", name = "ui-tooling-preview"}
+composeDebugPreview = { group = "androidx.compose.ui", name = "ui-tooling"}
+composeDebugManifest = {group = "androidx.compose.ui", name = "ui-test-manifest"}
+composeMaterial = { group = "androidx.compose.material", name = "material"}
+composeMaterial3 = { group = "androidx.compose.material3", name = "material3"}
+jUnit = { group = "junit", name = "junit", version.ref = "junit"}
+jUnitTest = { group = "androidx.test.ext", name = "junit", version.ref = "junit-ext" }
+jUnitUi = { group = "androidx.compose.ui", name = "ui-test-junit4"}
+espressoTest = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
+
+coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil"}
+navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation"}
+accomponistSystemUiController = {group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "systemuicontroller"}
+
+retrofit = {group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
+okhttp = {group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp"}
+moshi = {group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "moshi"}
+interceptor = {group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "interceptor"}
+arrow = {group = "io.arrow-kt", name = "arrow-core", version.ref = "arrow"}
+
+room = {group = "androidx.room", name = "room-runtime", version.ref = "room"}
+roomCompiler = {group = "androidx.room", name = "room-compiler", version.ref = "room"}
+roomKtx = {group = "androidx.room", name = "room-ktx", version.ref = "room"}
+
+hilt = {group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt"}
+daggerHilt = {group = "com.google.dagger", name = "hilt-android", version.ref = "daggerHilt"}
+hiltNavigation = {group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigation"}
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+
+firebaseBom = {group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom"}
+firebaseAnalytics = {group = "com.google.firebase", name = "firebase-analytics"}
+firebaseMessaging = {group = "com.google.firebase", name = "firebase-messaging"}
+
+[plugins]
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
